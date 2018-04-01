@@ -1,0 +1,25 @@
+extends ../layout
+
+block content
+    .container
+        .row.mb-3
+            if pageMovies && pageMovies.length > 0
+                if categories
+                    h5.alert.alert-danger.h-25.mr-4 #{categories.name}
+                else
+                    h5.alert.alert-danger.h-25.mr-4 #{searchContent}
+                each movie in pageMovies
+                    .card.mr-2(style="width: 10rem;height: 18rem;position: relative; bottom: 0px;")
+                        .card-body.text-center
+                            a.card-title(href="/movie/#{movie._id}")
+                                img(src="#{movie.poster}", alt='#{movie.title}', style="width: 100px; height: 120px")
+                            h5.mt-3 #{movie.title}
+                                p(style="position: absolute; bottom: 0px;"): a.btn.btn-primary.card-text(href="movie/#{movie._id}", role="button") 观看预告片    
+            else       
+                h4 未查询到该电影，请重新查询！
+        .row.ml-5
+            nav(aria-label="Page navigation example")
+                ul.pagination
+                    - for(var i = 0; i < PageIndex; i++)
+                        li.page-item.mr-2
+                        a(href="categorySearch?id=#{categories._id}&page=#{i+1}").page-link.active #{i+1}
