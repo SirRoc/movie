@@ -4,7 +4,7 @@ npm install
 # 使用
 grunt
 # 启动成功后打开
-locolhost:3000
+http://localhost:3000/
 
 源码层级
 -app
